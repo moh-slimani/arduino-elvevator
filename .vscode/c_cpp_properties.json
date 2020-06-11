@@ -3,28 +3,27 @@
         {
             "name": "Win32",
             "includePath": [
+                "C:\\Users\\moh\\Documents\\Arduino\\libraries\\PinChangeInterrupt\\src",
                 "C:/Program Files (x86)/Arduino/tools/**",
                 "C:/Program Files (x86)/Arduino/hardware/**",
-                "${workspaceRoot}",
+                "${workspaceRoot}/**",
                 "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\**",
                 "C:\\Program Files (x86)\\Arduino\\tools\\**"
             ],
             "forcedInclude": [
-                "C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino/Arduino.h",
                 "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino\\Arduino.h"
             ],
             "browse": {
+                "limitSymbolsToIncludedHeaders": true,
                 "path": [
                     "C:/Program Files (x86)/Arduino/hardware",
                     "C:/Program Files (x86)/Arduino/libraries",
-                    "C:/Users/moh/Documents/Arduino/libraries",
-                    "C:/Users/moh/Documents/Arduino/hardware/",
-                    "${workspaceRoot}"
+                    "C:/Users/moh/Documents/Arduino/libraries/**",
+                    "${workspaceRoot}/**"
                 ],
-                "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
             },
-            "intelliSenseMode": "msvc-x64"
+            "intelliSenseMode": "${default}"
         }
     ],
     "version": 4
