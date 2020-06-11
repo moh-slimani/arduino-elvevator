@@ -6,13 +6,20 @@ volatile int doorOpen = false;
 volatile int doorClosing = false;
 volatile int commoingFrom = 0;
 volatile int doorClosed = true;
+volatile int moving = false;
+
+int doorDelay = 2000;
 
 void setup()
 {
   displayDigitInit();
+
   limitSwitchersInit();
+
   upDownInit();
+
   buttonsInit();
+
   closeOpenInit();
 
   Serial.begin(9600);
@@ -25,7 +32,7 @@ void loop()
 {
   if (doorOpen && !doorClosing)
   {
-    delay(2000);
+    delay(doorDelay);
     closeDoor();
     delay(50);
   }
@@ -181,6 +188,7 @@ void goUp()
   Serial.println("going up ....");
   digitalWrite(downPin, LOW);
   digitalWrite(upPin, HIGH);
+  moving = true;
 }
 
 void goDown()
@@ -188,6 +196,7 @@ void goDown()
   Serial.println("going down ...");
   digitalWrite(upPin, LOW);
   digitalWrite(downPin, HIGH);
+  moving = true;
 }
 
 void stopMoving()
@@ -195,6 +204,8 @@ void stopMoving()
   Serial.println("stopping ...");
   digitalWrite(upPin, LOW);
   digitalWrite(downPin, LOW);
+
+  moving = false;
 
   openDoor();
 }
@@ -218,7 +229,7 @@ void buttonsInit()
 
 void LV1btnClick(void)
 {
-  if (level == 0)
+  if (level == 0 & !moving)
     openDoor();
   else
   {
@@ -231,7 +242,7 @@ void LV1btnClick(void)
 
 void LV2btnClick(void)
 {
-  if (level == 1)
+  if (level == 1 & !moving)
     openDoor();
   else
   {
@@ -243,7 +254,7 @@ void LV2btnClick(void)
 
 void LV3btnClick(void)
 {
-  if (level == 2)
+  if (level == 2 & !moving)
     openDoor();
   else
   {
@@ -272,8 +283,9 @@ void move()
 
     if (level == 1 && levelsToGo[2])
       goUp();
+
+    commoingFrom = level;
   }
-  commoingFrom = level;
 }
 
 /** open and close door **/
